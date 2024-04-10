@@ -1,3 +1,12 @@
+mod server;
+use std::env;
+
+use dotenv::dotenv;
+use server::Server;
+
 fn main() {
-    println!("Hello, world!");
+    dotenv().ok();
+    let addr = env::var("API_URL").expect("API_URL must be set");
+    let server = Server::new(&addr);
+    server.run();
 }
