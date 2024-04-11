@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-mod method;
+pub mod method;
 pub mod resource;
 mod utils;
 mod version;

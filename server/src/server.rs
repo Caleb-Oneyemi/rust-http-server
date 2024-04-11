@@ -3,6 +3,8 @@ use std::io::prelude::*;
 use std::net::TcpListener;
 use std::str;
 
+use crate::router::Router;
+
 pub struct Server<'a> {
     address: &'a str,
 }
@@ -27,9 +29,9 @@ impl<'a> Server<'a> {
             stream.read(&mut buffer).unwrap();
 
             // Convert stream to HttpRequest struct instance
-            let _req: HttpRequest = String::from_utf8(buffer.to_vec()).unwrap().into();
+            let req: HttpRequest = String::from_utf8(buffer.to_vec()).unwrap().into();
 
-            // Implement routing
+            Router::route(req, &mut stream);
         }
     }
 }
