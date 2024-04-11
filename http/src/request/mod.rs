@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 mod method;
-mod resource;
+pub mod resource;
 mod utils;
 mod version;
 
