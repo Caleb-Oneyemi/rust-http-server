@@ -53,8 +53,11 @@ impl Handler for WebServiceHandler {
 
         //e.g http::localhost:5000/api/v1/orders => ["http::localhost:5000", "api", "v1", "orders"]
         let route: Vec<&str> = path.split("/").collect();
-        let resource = route[2];
+        if route.len() <= 3 {
+            return HttpResponse::new("404", None, Self::load_file("404.html"));
+        }
 
+        let resource = route[2];
         match resource {
             "v1" if route.len() > 2 && route[3] == "orders" => {
                 let body = Some(serde_json::to_string(&Self::load_json()).unwrap());
