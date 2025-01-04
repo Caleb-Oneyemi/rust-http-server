@@ -15,7 +15,7 @@ $ cd rust-http-server
 create .env file:
 
 ```shell
-$ echo API_URL=http://localhost:{PORT} > .env
+$ echo API_URL=localhost:{PORT} > .env
 ```
 
 run server:
